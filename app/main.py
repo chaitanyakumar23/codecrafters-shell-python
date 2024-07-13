@@ -34,6 +34,9 @@ def main():
             else:
                 print(f'{args}: not found')
         else:
+            for path in paths:
+                if os.path.isfile(f"{path}/{args}"):
+                    cmd_path = f"{path}/{args}"
             if cmd_path:
                 subprocess.run([cmd_path] + args,check=True)  
             else:
