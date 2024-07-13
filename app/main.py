@@ -29,7 +29,7 @@ def main():
             if cmd in builtins:
                 print(f'{args[len("type ") :]} is a shell builtin')
             elif cmd_path:
-                print(f"{cmd} is {cmd_path}\n")
+                print(f"{cmd} is {cmd_path}")
             else:
                 print(f'{args[len("type ") :]}: not found')
         else:
