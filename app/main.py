@@ -22,7 +22,7 @@ def main():
             if os.path.isfile(f"{path}/{cmd}"):
                 cmd_path = f"{path}/{cmd}"
         if cmd_path:
-            os.system(args.split(" ")[0](cmd))        
+            os.system(args)        
         elif args == "exit 0":
             sys.exit(0)
         elif args.startswith("echo "):
