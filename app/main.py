@@ -39,7 +39,7 @@ def main():
             try:
                 os.chdir(" ".join(args))
             except FileNotFoundError:
-                print("cd:" + args + ": No such file or directory")
+                print("cd:"+"".join(args)+": No such file or directory")
         else:
             for path in paths:
                 if os.path.isfile(f"{path}/{cmd}"):
