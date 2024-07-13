@@ -22,7 +22,7 @@ def main():
         for path in paths:
             if os.path.isfile(f"{path}/{cmd}"):
                 cmd_path = f"{path}/{cmd}"
-        if cmd_path(args[0]) is not None:
+        if len(cmd_path)>0:
             subprocess.run([cmd_path] + args[1:])        
         elif args == "exit 0":
             sys.exit(0)
