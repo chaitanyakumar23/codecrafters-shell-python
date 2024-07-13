@@ -36,8 +36,10 @@ def main():
         elif cmd == "pwd":
              print(f"{os.getcwd()}")
         elif cmd == "cd":
+            curr_dir = os.getcwd()
             try:
-                os.chdir(" ".join(args))
+                os.chdir(args)
+                os.chdir(os.path.join(curr_dir, args))
             except FileNotFoundError:
                 print("cd: "+"".join(args)+": No such file or directory")
         else:
