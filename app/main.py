@@ -11,10 +11,14 @@ def main():
         sys.stdout.flush()
         sys.stdout.write("$ ")
         command = input()
-        if command == 'exit 0':
-            break
-        sys.stdout.write(f"{command}: command not found\n")
-
+        args = command.strip()
+        if args:
+            if args == "exit 0":
+                sys.exit(0)
+            elif args.startswith("echo "):
+                print(args[len("echo ") :])
+            else:
+                print(f"{args}: command not found")
         
 
 if __name__ == "__main__":
