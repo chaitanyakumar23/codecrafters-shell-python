@@ -9,7 +9,7 @@ def main():
     # Wait for user input
     while True:
         sys.stdout.flush()
-        sys.stdout.write("$")
+        sys.stdout.write("$ ")
         command = input()
         sys.stdout.write(f"{command}: command not found\n")
         if command == 'exit 0':
