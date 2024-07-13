@@ -44,7 +44,7 @@ def main():
                     break
                     # print(f"Error executing command: {e}")
             else:
-                 print(f"{args}: command not found")
+                 print(f"{cmd}: command not found")
         
 
 if __name__ == "__main__":
