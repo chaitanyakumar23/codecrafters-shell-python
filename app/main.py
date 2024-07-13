@@ -7,7 +7,7 @@ def main():
     # sys.stdout.write("$ ")
     # sys.stdout.flush()
 
-    builtins = ["echo", "exit", "type"]
+    builtins = ["echo", "exit", "type", "pwd" ]
     PATH = os.environ.get("PATH","")
 
     # Wait for user input
@@ -33,6 +33,8 @@ def main():
                 print(f"{args[0]} is {cmd_path}")
             else:
                 print(f'{args[0]}: not found')
+        elif cmd == "pwd":
+             print(f"{os.getcwd()}")
         else:
             for path in paths:
                 if os.path.isfile(f"{path}/{cmd}"):
