@@ -15,28 +15,29 @@ def main():
         sys.stdout.flush()
         sys.stdout.write("$ ")
         command = input()
-        args = command.strip()
-        cmd = args.split(" ")[1]
-        cmd_path = None
         paths = PATH.split(":")
-        for path in paths:
-            if os.path.isfile(f"{path}/{cmd}"):
-                cmd_path = f"{path}/{cmd}"
-        if len(cmd_path)>0:
-            subprocess.run([cmd_path] + args[1:],check=True)        
-        elif args == "exit 0":
+        cmd = command.strip().split(" ")[0]
+        args = command.strip().split(" ")[1]
+        cmd_path = None
+        if command.strip() == "exit 0":
             sys.exit(0)
-        elif args.startswith("echo "):
-            print(args[len("echo ") :])
-        elif args.startswith("type"):
-            if cmd in builtins:
-                print(f'{args[len("type ") :]} is a shell builtin')
+        elif cmd == "echo":
+            print(args)
+        elif cmd == "type":
+            for path in paths:
+                if os.path.isfile(f"{path}/{args}"):
+                    cmd_path = f"{path}/{args}"
+            if args in builtins:
+                print(f'{args} is a shell builtin')
             elif cmd_path:
-                print(f"{cmd} is {cmd_path}")
+                print(f"{args} is {cmd_path}")
             else:
-                print(f'{args[len("type ") :]}: not found')
+                print(f'{args}: not found')
         else:
-            print(f"{args}: command not found")
+            if cmd_path:
+                subprocess.run([cmd_path] + args,check=True)  
+            else:
+                 print(f"{args}: command not found")
         
 
 if __name__ == "__main__":
