@@ -12,8 +12,7 @@ def main():
         sys.stdout.write("$ ")
         if command == 'exit 0':
             break
-        else:
-            sys.stdout.write(f"{command}: command not found\n")
-            
+        sys.stdout.write(f"{command}: command not found\n")
+
 if __name__ == "__main__":
     main()
