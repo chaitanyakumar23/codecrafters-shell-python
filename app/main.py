@@ -21,9 +21,9 @@ def main():
                 print(args[len("echo ") :])
             elif args.startswith("type"):
                 if args[len("type ") :] in builtins:
-                    print(f'args[len("type ") :] is a shell builtin')
+                    print(f'{args[len("type ") :]} is a shell builtin')
                 else:
-                    print(f'args[len("type ") :]: not found')
+                    print(f'{args[len("type ") :]}: not found')
             else:
                 print(f"{args}: command not found")
         
