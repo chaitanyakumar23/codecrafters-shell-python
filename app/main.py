@@ -8,7 +8,7 @@ def main():
     # sys.stdout.flush()
 
     builtins = ["echo", "exit", "type"]
-    PATH = os.environ.get("PATH")
+    PATH = os.environ.get("PATH","")
 
     # Wait for user input
     while True:
@@ -23,7 +23,7 @@ def main():
             if os.path.isfile(f"{path}/{cmd}"):
                 cmd_path = f"{path}/{cmd}"
         if cmd_path(args[0]) is not None:
-            subprocess.run(args)        
+            subprocess.run([cmd_path] + args[1:])        
         elif args == "exit 0":
             sys.exit(0)
         elif args.startswith("echo "):
