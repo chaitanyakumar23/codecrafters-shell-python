@@ -7,7 +7,7 @@ def main():
     # sys.stdout.write("$ ")
     # sys.stdout.flush()
 
-    builtins = ["echo", "exit", "type", "pwd" ]
+    builtins = ["echo", "exit", "type", "pwd","cd" ]
     PATH = os.environ.get("PATH","")
 
     # Wait for user input
@@ -35,6 +35,11 @@ def main():
                 print(f'{args[0]}: not found')
         elif cmd == "pwd":
              print(f"{os.getcwd()}")
+        elif cmd == "cd":
+            try:
+                os.chdir(" ".join(args))
+            except FileNotFoundError:
+                print(" ".join(command) + ": No such file or directory")
         else:
             for path in paths:
                 if os.path.isfile(f"{path}/{cmd}"):
