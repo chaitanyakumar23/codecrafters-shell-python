@@ -22,7 +22,7 @@ def main():
         if command.strip() == "exit 0":
             sys.exit(0)
         elif cmd == "echo":
-            print(args)
+            print(" ".join(args))
         elif cmd == "type":
             for path in paths:
                 if os.path.isfile(f"{path}/{args[0]}"):
