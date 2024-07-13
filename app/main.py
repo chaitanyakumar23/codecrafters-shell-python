@@ -1,5 +1,5 @@
 import sys
-
+import os 
 
 def main():
     # Uncomment this block to pass the first stage
@@ -7,6 +7,7 @@ def main():
     # sys.stdout.flush()
 
     builtins = ["echo", "exit", "type"]
+    PATH = os.environ.get("PATH")
 
     # Wait for user input
     while True:
@@ -14,18 +15,25 @@ def main():
         sys.stdout.write("$ ")
         command = input()
         args = command.strip()
-        if args:
-            if args == "exit 0":
-                sys.exit(0)
-            elif args.startswith("echo "):
-                print(args[len("echo ") :])
-            elif args.startswith("type"):
-                if args[len("type ") :] in builtins:
-                    print(f'{args[len("type ") :]} is a shell builtin')
-                else:
-                    print(f'{args[len("type ") :]}: not found')
+        if args == "exit 0":
+            sys.exit(0)
+        elif args.startswith("echo "):
+            print(args[len("echo ") :])
+        elif args.startswith("type"):
+            cmd = args.split(" ")[1]
+            cmd_path = None
+            paths = PATH.split(":")
+            for path in paths:
+                if os.path.isfile(f"{path}/{cmd}"):
+                    cmd_path = f"{path}/{cmd}"
+            if cmd in builtins:
+                print(f'{args[len("type ") :]} is a shell builtin')
+            elif cmd_path:
+                print(f"{cmd} is {cmd_path}\n")
             else:
-                print(f"{args}: command not found")
+                print(f'{args[len("type ") :]}: not found')
+        else:
+            print(f"{args}: command not found")
         
 
 if __name__ == "__main__":
