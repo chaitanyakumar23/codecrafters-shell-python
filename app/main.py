@@ -17,23 +17,22 @@ def main():
         args = command.strip()
         cmd = args.split(" ")[1]
         cmd_path = None
-        paths = PATH.split(":")        
+        paths = PATH.split(":")
+        for path in paths:
+                if os.path.isfile(f"{path}/{cmd}"):
+                    cmd_path = f"{path}/{cmd}"
+                    os.system(args(args.split(" ")[1]))        
         if args == "exit 0":
             sys.exit(0)
         elif args.startswith("echo "):
             print(args[len("echo ") :])
         elif args.startswith("type"):
-            for path in paths:
-                if os.path.isfile(f"{path}/{cmd}"):
-                    cmd_path = f"{path}/{cmd}"
             if cmd in builtins:
                 print(f'{args[len("type ") :]} is a shell builtin')
             elif cmd_path:
                 print(f"{cmd} is {cmd_path}")
             else:
                 print(f'{args[len("type ") :]}: not found')
-        elif os.path.isfile(args.split(" ")[0]):
-            os.system(args(args.split(" ")[1]))
         else:
             print(f"{args}: command not found")
         
