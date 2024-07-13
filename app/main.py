@@ -37,7 +37,7 @@ def main():
              print(f"{os.getcwd()}")
         elif cmd == "cd":
             curr_dir = os.getcwd()
-            if args.startswith("~"):
+            if args[0].startswith("~"):
                 home_dir = os.path.expanduser("~")
                 os.chdir(home_dir)
             else:
