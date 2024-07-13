@@ -23,7 +23,7 @@ def main():
             if os.path.isfile(f"{path}/{cmd}"):
                 cmd_path = f"{path}/{cmd}"
         if len(cmd_path)>0:
-            subprocess.run([cmd_path] + args[1:])        
+            subprocess.run([cmd_path] + args[1:],check=True)        
         elif args == "exit 0":
             sys.exit(0)
         elif args.startswith("echo "):
