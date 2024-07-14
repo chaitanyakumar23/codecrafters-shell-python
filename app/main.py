@@ -3,10 +3,6 @@ import os
 import subprocess
 
 def main():
-    # Uncomment this block to pass the first stage
-    # sys.stdout.write("$ ")
-    # sys.stdout.flush()
-
     builtins = ["echo", "exit", "type", "pwd","cd" ]
     PATH = os.environ.get("PATH","")
 
@@ -54,8 +50,7 @@ def main():
                 try:
                     subprocess.run([cmd_path] + args, check=True)
                 except subprocess.CalledProcessError as e:
-                    break
-                    # print(f"Error executing command: {e}")
+                     print(f"Error executing command: {e}")
             else:
                  print(f"{cmd}: command not found")
         
